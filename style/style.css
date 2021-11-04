@@ -1,0 +1,230 @@
+
+body{
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: #B6C4F0;
+}
+header{
+    text-align: center;
+    padding-left: 200px;
+    height: 20%;
+    background-color: black;
+    color: white;
+    margin: 0;
+    z-index: 1;
+}
+a{
+    text-decoration: none;
+}
+ul{
+    list-style-type: none;
+}
+
+a #brandname{
+    text-decoration: none;
+    color: inherit;
+}
+
+nav{
+    position: absolute;
+    padding-top: 18px;
+    float: left;
+    position: fixed;
+    display: block;
+    height:100%;
+    background-color: #879BDD;
+
+
+}
+nav a{
+    text-align: center;
+    font-size: 2em;
+    display: block;
+    padding: 20px 0px;
+}
+nav a:nth-child(1){
+    margin-top: 20px;
+}
+main{
+    float: right;
+    margin-left: 200px;
+}
+.intro{
+    text-align: center;
+    flex-direction: column;
+}
+.intro h1{
+    margin-bottom: 0;
+    margin-top: 50px;
+}
+.intro p{
+    margin-top: 0;
+    padding-bottom: 20px;
+    font-size: 1.5em;
+}
+.intro h2{
+    margin-top: 0;
+    padding-bottom: 20px;
+    font-size: 1.5em;
+}
+main div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+.center{
+    text-align: center;
+    flex-direction: column;
+}
+
+main div img{
+    width: 400px;
+    display: inline-block;
+
+}
+
+footer{
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0px;
+    margin-top: auto;
+    overflow: hidden;
+    height: auto;
+    margin-bottom: 20px;
+}
+footer h2 {
+    margin-bottom: 0;
+}
+footer p ,ul{
+    margin: 0;
+    padding-left: 0;
+}
+footer ul li{
+    display: inline-block;
+}
+
+.product-wrapper{
+    justify-content: flex-start;
+    width: 100%;
+    flex-wrap: wrap;
+}
+.product-wrapper img{
+    width: 200px;
+}
+.product-wrapper figure{
+    flex-direction: row;
+    padding-left: 25px;
+}
+
+figcaption h4,p{
+    margin:0;
+}
+
+.rating {
+    justify-content: flex-start;
+}
+.enquiry{
+    border: solid black;
+    width: 80%;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.form-container{
+    display: flex;
+    align-items: center;
+
+    justify-content: center;
+}
+.enquiry div{
+    width: 100%;
+    flex-direction: column;
+}
+
+#enquiry label{
+    width: 100px;
+    display: inline-block;
+    text-align: right;
+    padding-bottom: 10px;
+}
+
+.enquiry input[type=text], .enquiry input[type=email], .enquiry textarea{
+    width: 100%;
+    display: inline-block;
+}
+
+.enquiry input[type=submit]{
+    display: inline;
+    width: 120px;
+
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+
+}
+.cart{
+    border: solid rgb(77, 74, 74);
+    width: max-content;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    border-radius: 10px;
+    align-self: center;
+
+}
+
+.cart div{
+    width: fit-content;
+    flex-direction: column;
+
+}
+
+.cart label{
+    width: max-content;
+    display: inline;
+    text-align: left;
+    padding-bottom: 0px;
+    padding-top: 5px;
+}
+
+.cart input{
+    width: 300px;
+    display: inline;
+}
+
+.cart input[type=submit]{
+    display: inline;
+    width: fit-content;
+
+}
+
+.cart button{
+    margin-top: 10px;
+    width: fit-content;
+    margin: 0;
+}
+#item{
+    width: 250px;
+    display: inline;
+
+}
+#itemQuantity{
+    width: 30px;
+}
+
+a #login {
+   color: black; 
+}
