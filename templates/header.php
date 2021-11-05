@@ -12,9 +12,11 @@
 <body>
     <header>
         Enjoy free shipping for any orders of RM50 and above!
+        <a class="login" href="login.php">Login/Register</a>
     </header>
-    
-    
+
+
+
     <nav>
         <a id="brandname" href="index.php">BlumigeSeifen</a>
         <a href="payment.php" id="cart">Cart</a>

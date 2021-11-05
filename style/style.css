@@ -225,6 +225,7 @@ input[type=number] {
     width: 30px;
 }
 
-a #login {
-   color: black; 
+a.login {
+    color: white;
+    float: right;
 }
