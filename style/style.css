@@ -229,3 +229,19 @@ a.login {
     color: white;
     float: right;
 }
+
+.login-form-div{
+    border: black;
+    margin: 0 auto;
+    flex-direction: column;
+    text-align: center;
+    margin: 50px;
+}
+
+.login-form-div label{
+
+    display: inline-block;
+    padding-bottom: 10px;
+    width: 100px;
+    text-align: right;
+}

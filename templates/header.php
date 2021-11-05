@@ -1,3 +1,14 @@
+<?php
+    session_start();
+
+    if(isset($_SESSION['username'])){
+
+    }
+    else{
+        header("Location: http://localhost/finalproject/login.php");
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
