@@ -1,5 +1,5 @@
 <?php
-include_once "functions.php";
+require_once("utilities.php");
 $host = "localhost";
 $username = "admin";
 $password = "admin";
@@ -11,14 +11,14 @@ $handler = mysqli_connect($host, $username, $password, $db) or die("Connection f
 if( isset($_POST['email'])){
     $email = $_POST['email'];
     $email_pattern = "/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/i";
-    
+
     if(preg_match($email_pattern, $email)){
         $query = "INSERT into email_list VALUES ('$email')";
         $insert = mysqli_query($handler, $query);
-        
+
         if ($insert) {
             echo "
-                <script> 
+                <script>
                     alert('Your email has been added to our mailing list.');
                 </script>";
                 redirect();
@@ -32,7 +32,7 @@ if( isset($_POST['email'])){
     }
     else{
         echo "
-            <script> 
+            <script>
                 alert('Your email is invalid.') </script>
             </script>";
         redirect();

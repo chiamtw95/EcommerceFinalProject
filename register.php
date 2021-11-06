@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    require_once('phpfiles/utilities.php');
+    if( $_SESSION['failedRegistration'] == true && isset($_SESSION['failedRegistration'])){
+        alert("This email has been used. Please try again.");
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,11 +27,10 @@
                 <input type="email" name="email" id="email"><br>
 
                 <label for="pw">Password: </label>
-                <input type="text" name="password" id="password"><br>
+                <input type="password" name="password" id="password"><br>
 
                 <label for="pw">Repeat password: </label>
-                <input type="text" name="password" id="password-repeat"><br>
-
+                <input type="password" name="password-repeat" id="password-repeat"><br>
 
                 <input type="submit" value="Register">
         </form>

@@ -1,10 +1,6 @@
 <?php
     session_start();
-
-    if(isset($_SESSION['username'])){
-
-    }
-    else{
+    if(!isset($_SESSION['email'])){
         header("Location: http://localhost/finalproject/login.php");
     }
 ?>
@@ -23,7 +19,6 @@
 <body>
     <header>
         Enjoy free shipping for any orders of RM50 and above!
-        <a class="login" href="login.php">Login/Register</a>
     </header>
 
 
@@ -35,5 +30,5 @@
         <a href="product.php">Products</a>
         <a href="contact.php">Contact</a>
         <a href="about.php">About us</a>
-        <a id="login" href="login.php">Login/Register</a>
+        <a id="login" href="login.php">My Account</a>
     </nav>

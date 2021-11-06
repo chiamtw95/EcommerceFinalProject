@@ -1,5 +1,5 @@
 <?php
-
+require_once("utilities.php");
 $host = "localhost";
 $username = "root";
 $password = "";
