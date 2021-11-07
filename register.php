@@ -1,8 +1,11 @@
 <?php
     session_start();
     require_once('phpfiles/utilities.php');
-    if( $_SESSION['failedRegistration'] == true && isset($_SESSION['failedRegistration'])){
+    if( $_SESSION['failedRegistration_email'] == true && isset($_SESSION['failedRegistration_email'])){
         alert("This email has been used. Please try again.");
+    }
+    else if( $_SESSION['failedRegistration_name'] == true && isset($_SESSION['failedRegistration_name'])){
+        alert("Please enter a valid name.");
     }
 ?>
 <!DOCTYPE html>

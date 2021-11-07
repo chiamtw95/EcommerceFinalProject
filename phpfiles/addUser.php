@@ -13,29 +13,35 @@ if(isset($_POST['fullname']) &&
     $pw = $_POST['password'];
     $name = $_POST['fullname'];
 
-    //sanitize name
+    //sanitizing, hashing, and validation
     $name = sanitize($name);
-    //validate email
-    $email = filter_var ( $email, FILTER_SANITIZE_EMAIL);
-    //hash pw
+    $email = filter_var ($email, FILTER_SANITIZE_EMAIL);
     $hashpw = password_hash($pw,PASSWORD_DEFAULT);
 
-    //Add user into database
-        $query = $mysqli->prepare("INSERT INTO users (email,password,name) VALUES(?,?,?)");
-        $query ->bind_param("sss", $email, $hashpw, $name);
-        $status = $query -> execute();
-        //success
-        if($status){
-            unset($_SESSION['failedRegistration']);
-            $_SESSION['failedRegistration'] = false;
-            header("Location: http://localhost/finalproject/login.php");
-        }//fail
-        else{
-            $_SESSION['failedRegistration'] = true;
-            header("Location: http://localhost/finalproject/register.php");
-        }
-}
+    if(preg_match($name_pattern,$name)){
+         //Add user into database
+         $query = $mysqli->prepare("INSERT INTO users (email,password,name) VALUES(?,?,?)");
+         $query ->bind_param("sss", $email, $hashpw, $name);
+         $status = $query -> execute();
 
+         //successfully inserted into DB
+         if($status){
+             unset($_SESSION['failedRegistration_email']);
+             unset($_SESSION['failedRegistration_name']);
+             header("Location: http://localhost/finalproject/login.php");
+         }
+         //failed to insert into DB
+         else{
+             $_SESSION['failedRegistration_email'] = true;
+             header("Location: http://localhost/finalproject/register.php");
+         }
+    }
+    //Failed to match patterns of name and email
+    else{
+        $_SESSION['failedRegistration_name'] = true;
+        header("Location: http://localhost/finalproject/register.php");
+    }
+}
 $mysqli->close();
 exit;
 ?>

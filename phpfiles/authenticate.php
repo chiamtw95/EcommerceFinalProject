@@ -17,9 +17,9 @@
 
         //if login successful
         if ($result && password_verify($pw, $row['password'])){
-
-            $_SESSION['timestamp'] = time();
+            $_SESSION['last_login_timestamp'] = time();
             $_SESSION['email'] = $email;
+
             unset($row['password']);
             unset($_SESSION['failedLogin']);
             header("Location: http://localhost/finalproject/index.php");

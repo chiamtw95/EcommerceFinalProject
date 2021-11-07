@@ -14,12 +14,11 @@ function alert($msg) {
     echo "<script type='text/javascript'>alert('$msg');</script>";
 }
 
-//
+//Validation tools
+$name_pattern = "/^([a-zA-Z' ]+)$/";
 //Sanitizing tools
-//
 function sanitize ($str){
     $str = addslashes($str);
     $str = htmlspecialchars($str);
     return $str;
 }
-    

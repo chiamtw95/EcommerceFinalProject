@@ -1,7 +1,17 @@
 <?php
     session_start();
+    //Case: user not logged in
     if(!isset($_SESSION['email'])){
         header("Location: http://localhost/finalproject/login.php");
+    }
+    //Case: user inactive after 10 minutes
+    $_SESSION['timestamp'] = time();
+    if(time() - $_SESSION['last_login_timestamp'] > 600) {
+        header("Location: http://localhost/finalproject/logout.php");
+    }
+    //Case: renew timestamp
+    else {
+        $_SESSION['last_login_timestamp'] = time();
     }
 ?>
 

@@ -2,12 +2,12 @@
     session_start();
     require_once('phpfiles/utilities.php');
 
-    //redirected after failed login attmept
+    //failed login attmept
     if( $_SESSION['failedLogin'] == true && isset($_SESSION['failedLogin'])){
         $msg = "Incorrect username/password combination";
         alert($msg);
     }
-    //redirected after registering successfully
+    //after registering successfully
     else if($_SESSION['failedRegistration'] == false &&
             isset($_SESSION['failedRegistration'])){
         alert("Account succesfully created. Please login.");
