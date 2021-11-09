@@ -109,8 +109,8 @@ footer ul li{
 
 .product-wrapper{
     justify-content: flex-start;
-    width: 100%;
     flex-wrap: wrap;
+    margin: 0%;
 }
 .product-wrapper img{
     width: 200px;
@@ -244,4 +244,13 @@ a.login {
     padding-bottom: 10px;
     width: 100px;
     text-align: right;
+}
+
+/* td img.cart-item-image {
+	width: 30px !important;
+    height: 30px !important;
+} */
+
+form figure {
+    margin: 0;
 }

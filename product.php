@@ -1,4 +1,66 @@
-<?php include 'templates/header.php'; ?>
+<?php
+    include 'templates/header.php';
+    session_start();
+    require_once("phpfiles/dbcontroller.php");
+    $db_handle = new DBController();
+
+    if(!empty($_GET["action"])) {
+        switch($_GET["action"]) {
+            case "add":
+                if(!empty($_POST["quantity"])) {
+                    $productById = $db_handle->runQuery("SELECT * FROM products WHERE id='" . $_GET["id"] . "'");
+                    //get the first data only with index [0]
+                                $itemArray = array($productById[0]["id"]=>array('name'=>$productById[0]["name"],
+                                             'id'=>$productById[0]["id"], 'quantity'=>$_POST["quantity"],
+                                              'price'=>$productById[0]["price"], 'image'=>$productById[0]["image"]));
+
+                    if(!empty($_SESSION["cart_item"])) {
+                                        //checking new add item with currect Cart
+                        if(in_array($productById[0]["id"],array_keys($_SESSION["cart_item"]))) {
+                            foreach($_SESSION["cart_item"] as $k => $v) {
+
+                                    if($productById[0]["id"] == $k) {
+                                                                       //if the quantity  is empty, starting the quantity from Zero
+                                        if(empty($_SESSION["cart_item"][$k]["quantity"])) {
+                                            $_SESSION["cart_item"][$k]["quantity"] = 0;
+                                        }
+                                                                        //if the item already in the Cart, add the quantity
+                                        $_SESSION["cart_item"][$k]["quantity"] += $_POST["quantity"];
+                                    }
+                            }
+                        }
+                                        //if current item is not in the cart, add the item
+                                        else {
+                            $_SESSION["cart_item"] = array_merge($_SESSION["cart_item"],$itemArray);
+                        }
+                    } else {
+                                        //if the session is empty, start the new session.
+                        $_SESSION["cart_item"] = $itemArray;
+                    }
+                }
+            break;
+            case "remove":
+                if(!empty($_SESSION["cart_item"])) {
+                    foreach($_SESSION["cart_item"] as $k => $v) {
+                            if($_GET["id"] == $k)
+                                unset($_SESSION["cart_item"][$k]);
+                                                // if no more item in cart, empty the session
+                            if(empty($_SESSION["cart_item"]))
+                                unset($_SESSION["cart_item"]);
+                    }
+                }
+            break;
+            case "empty":
+                unset($_SESSION["cart_item"]);
+            break;
+        }
+        }
+?>
+
+<!-- Inject cart template -->
+<?php
+    include 'templates/cart.php';
+?>
 
 <main class="index">
 
@@ -7,6 +69,40 @@
     </div>
 
     <div class="product-wrapper">
+    <!-- dynamically display products -->
+    <?php
+        $product_array = $db_handle->runQuery("SELECT * FROM products ORDER BY id ASC");
+        if (!empty($product_array)) {
+            foreach($product_array as $key=>$value){
+	?>
+
+        <form id="products" method="post" action="product.php?action=add&id=<?php echo $product_array[$key]["id"]; ?>">
+                <figure>
+                    <img src="<?php echo $product_array[$key]["image"]; ?>" alt="product">
+                    <figcaption>
+                        <h4><?php echo $product_array[$key]["name"]; ?></h4>
+                        <p>RM<?php echo $product_array[$key]["price"]; ?></p>
+                        <div class="rating">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                        </div>
+                        <input type="text" class="product-quantity" name="quantity" value="1" size="2" />
+                                <!-- Post method for adding to Cart  -->
+                                <input type="submit" value="Add to Cart"/>
+                    </figcaption>
+            </figure>
+
+        </form>
+
+    <?php
+		}
+	}
+	?>
+    </div>
+    <!-- <div class="product-wrapper">
 
         <figure>
             <img src="style/images/index.jpg" alt="product">
@@ -71,7 +167,7 @@
                 <a href="payment.html"><button href="payment.html" >Buy now</button></a>
             </figcaption>
         </figure>
-    </div>
+    </div> -->
 
 <!-- Footer -->
 <?php include 'templates/footer.php'; ?>
