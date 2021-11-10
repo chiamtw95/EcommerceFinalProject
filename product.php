@@ -7,34 +7,36 @@
     if(!empty($_GET["action"])) {
         switch($_GET["action"]) {
             case "add":
-                if(!empty($_POST["quantity"])) {
+                if(!empty($_POST["quantity"]) && $_POST['quantity'] > 0) {
                     $productById = $db_handle->runQuery("SELECT * FROM products WHERE id='" . $_GET["id"] . "'");
                     //get the first data only with index [0]
-                                $itemArray = array($productById[0]["id"]=>array('name'=>$productById[0]["name"],
-                                             'id'=>$productById[0]["id"], 'quantity'=>$_POST["quantity"],
-                                              'price'=>$productById[0]["price"], 'image'=>$productById[0]["image"]));
+                                $itemArray = array($productById[0]["id"]=>
+                                            array('name'=>$productById[0]["name"],
+                                                'id'=>$productById[0]["id"],
+                                                'quantity'=>$_POST["quantity"],
+                                                'price'=>$productById[0]["price"], '
+                                                image'=>$productById[0]["image"]));
 
                     if(!empty($_SESSION["cart_item"])) {
-                                        //checking new add item with currect Cart
-                        if(in_array($productById[0]["id"],array_keys($_SESSION["cart_item"]))) {
+                    //checking new add item with currect Cart
+                        if(array_key_exists($productById[0]["id"], $_SESSION["cart_item"])) {
                             foreach($_SESSION["cart_item"] as $k => $v) {
-
-                                    if($productById[0]["id"] == $k) {
-                                                                       //if the quantity  is empty, starting the quantity from Zero
-                                        if(empty($_SESSION["cart_item"][$k]["quantity"])) {
+                                    if($productById[0]["id"] == $v['id']){
+                                        //if the quantity  is empty, initializing the quantity to Zero
+                                        if(empty($v['id']))
                                             $_SESSION["cart_item"][$k]["quantity"] = 0;
-                                        }
-                                                                        //if the item already in the Cart, add the quantity
+                                        //if the item already in the Cart, add the quantity
                                         $_SESSION["cart_item"][$k]["quantity"] += $_POST["quantity"];
                                     }
                             }
                         }
-                                        //if current item is not in the cart, add the item
-                                        else {
+                        //if current item is not in the cart, add the item
+                        else {
                             $_SESSION["cart_item"] = array_merge($_SESSION["cart_item"],$itemArray);
                         }
-                    } else {
-                                        //if the session is empty, start the new session.
+                    }
+                    else {
+                        //if the session is empty, start the new session.
                         $_SESSION["cart_item"] = $itemArray;
                     }
                 }
@@ -42,27 +44,30 @@
             case "remove":
                 if(!empty($_SESSION["cart_item"])) {
                     foreach($_SESSION["cart_item"] as $k => $v) {
-                            if($_GET["id"] == $k)
+                            if($_GET["id"] == $v['id'])
                                 unset($_SESSION["cart_item"][$k]);
-                                                // if no more item in cart, empty the session
+                            // if no more item in cart, empty the session
                             if(empty($_SESSION["cart_item"]))
                                 unset($_SESSION["cart_item"]);
+
                     }
                 }
             break;
             case "empty":
                 unset($_SESSION["cart_item"]);
+                // header("Location: http://localhost/finalproject/product.php");
             break;
         }
         }
 ?>
 
+<main class="index">
 <!-- Inject cart template -->
 <?php
     include 'templates/cart.php';
 ?>
 
-<main class="index">
+
 
     <div class="intro">
         <h1>Our Products</h1>

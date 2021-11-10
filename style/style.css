@@ -246,10 +246,15 @@ a.login {
     text-align: right;
 }
 
-/* td img.cart-item-image {
-	width: 30px !important;
-    height: 30px !important;
-} */
+td img.cart-item-image {
+	width: 50px !important;
+    height: 50px !important;
+    border-radius: 50%;
+    border: #E0E0E0 1px solid;
+    padding: 5px;
+    vertical-align: middle;
+    margin-right: 15px;
+}
 
 form figure {
     margin: 0;

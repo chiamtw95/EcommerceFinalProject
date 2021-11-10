@@ -29,6 +29,7 @@
 <body>
     <header>
         Enjoy free shipping for any orders of RM50 and above!
+        <a style="float: right" href="logout.php">Logout</a>
     </header>
 
 
