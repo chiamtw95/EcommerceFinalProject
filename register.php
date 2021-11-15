@@ -3,9 +3,15 @@
     require_once('phpfiles/utilities.php');
     if( $_SESSION['failedRegistration_email'] == true && isset($_SESSION['failedRegistration_email'])){
         alert("This email has been used. Please try again.");
+        unset($_SESSION['failedRegistration_email']);
     }
     else if( $_SESSION['failedRegistration_name'] == true && isset($_SESSION['failedRegistration_name'])){
         alert("Please enter a valid name.");
+        unset($_SESSION['failedRegistration_name']);
+    }
+    else if( $_SESSION['failedRegistration_password'] == true && isset($_SESSION['failedRegistration_password'])){
+        alert("Passwords do not match");
+        unset($_SESSION['failedRegistration_password']);
     }
 ?>
 <!DOCTYPE html>

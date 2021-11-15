@@ -2,10 +2,17 @@
     session_start();
     require_once('phpfiles/utilities.php');
 
+    //admin login identifier
+    if($_GET['admin'] == true)
+        $_SESSION['admin']= true;
+    else
+        unset($_SESSION['admin']);
+
     //failed login attmept
     if( $_SESSION['failedLogin'] == true && isset($_SESSION['failedLogin'])){
         $msg = "Incorrect username/password combination";
         alert($msg);
+        unset($_SESSION['failedLogin']);
     }
     //after registering successfully
     else if($_SESSION['failedRegistration'] == false &&
@@ -37,7 +44,14 @@
                     <input type="password" name="password" id="password"><br>
                     <input type="submit" value="Login">
             </form>
-            <a href="register.php">Not a member? Register here.</a>
+            <a href="register.php">Not a member? Register here.</a> <br><br>
+
+            <?php
+                if($_SESSION['admin'] == true)
+                    echo "<a href='login.php'>Login as user</a>";
+                else
+                    echo "<a href='login.php?admin=true'>Login as admin</a>";
+            ?>
         </div>
     </body>
 

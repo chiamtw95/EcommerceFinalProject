@@ -108,9 +108,9 @@ footer ul li{
 }
 
 .product-wrapper{
-    justify-content: flex-start;
+    width: auto;
+    justify-content: space-around;
     flex-wrap: wrap;
-    margin: 0%;
 }
 .product-wrapper img{
     width: 200px;
@@ -258,4 +258,28 @@ td img.cart-item-image {
 
 form figure {
     margin: 0;
+}
+
+p.center{
+    text-align: center;
+    font-size: 3em;
+}
+
+#btn-empty{
+    background-color: #ffffff;
+	border: #d00000 1px solid;
+	padding: 5px 10px;
+	color: #d00000;
+	float: right;
+	text-decoration: none;
+	border-radius: 3px;
+	margin: 10px 0px;
+}
+
+.tbl-cart{
+    padding-top: 25px;
+}
+
+.order-history{
+    text-align: left !important;
 }

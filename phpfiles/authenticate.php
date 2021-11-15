@@ -2,16 +2,22 @@
     require_once("utilities.php");
     session_start();
 
+
+
     if(isset($_POST['email']) && isset($_POST['password'])){
         //need to sanitize TODO hashing
         $email = sanitize($_POST['email']);
         $pw = $_POST['password'];
 
         //begin the query
-        $query = $mysqli->prepare("SELECT * FROM users WHERE email=?");
+        //query for admin
+        //to authenticate admins
+        if($_SESSION['admin'] == true)
+            $query = $mysqli->prepare("SELECT * FROM admins WHERE email=?");
+        else
+            $query = $mysqli->prepare("SELECT * FROM users WHERE email=?");
         $query ->bind_param("s", $email);
         $query -> execute();
-
         $result = $query->get_result();
         $row = $result->fetch_assoc();
 

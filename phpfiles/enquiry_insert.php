@@ -1,25 +1,34 @@
 <?php
 require_once("utilities.php");
-$host = "localhost";
-$username = "root";
-$password = "";
-$db = "WebsiteDB";
-$handler = mysqli_connect($host, $username, $password, $db) or die("Connection failed <br>" . mysqli_connect_error() . "<br>");
+session_start();
+require_once("dbcontroller.php");
+$db_handle = new DBController();
 
-$email = $_POST['email'];
-$name = $_POST['fullname'];
-$msg = $_POST['msg'];
+if(isset($_POST['fullname']) &&
+    isset($_POST['email']) &&
+    isset($_POST['msg'])
+){
+    $name = $_POST['fullname'];
+    $email = $_POST['email'];
+    $msg = $_POST['msg'];
 
+    //sanitizing
+    $name = sanitize($name);
+    $email = filter_var ($email, FILTER_SANITIZE_EMAIL);
+    $msg = sanitize($msg);
 
-$query = "INSERT into enquiry VALUES ('$name', '$email','$msg')";
-$insert = mysqli_query($handler, $query);
-$errormsg = mysqli_error($handler);
+    $query = $mysqli->prepare("INSERT INTO enquiry (name, email, message) VALUES(?,?,?)");
+    $query ->bind_param("sss", $name, $email, $msg);
+    $status = $query -> execute();
 
-if ($insert) {
-    echo ' <script> alert("Enquiry inserted succesfully.") </script>';
-} else {
-    echo '<script>alert("Enquiry insertion was unsuccesful.")</script>';
+    if($status)
+        alert("Enquiry inserted succesfully.");
+    else
+        alert("Enquiry insertion was unsuccesful. Please try again.");
+
 }
-mysqli_close($handler);
+redirect();
+
+$mysqli->close();
 exit;
 ?>

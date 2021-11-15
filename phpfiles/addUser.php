@@ -1,5 +1,6 @@
 <?php
 require_once("utilities.php");
+session_start();
 
 //Ensures Registration form is filled and password is the same password
 if(isset($_POST['fullname']) &&
@@ -8,7 +9,6 @@ if(isset($_POST['fullname']) &&
     isset($_POST['password-repeat']) &&
     ($_POST['password'] == $_POST['password-repeat']))
 {
-    session_start();
     $email = $_POST['email'];
     $pw = $_POST['password'];
     $name = $_POST['fullname'];
@@ -41,6 +41,10 @@ if(isset($_POST['fullname']) &&
         $_SESSION['failedRegistration_name'] = true;
         header("Location: http://localhost/finalproject/register.php");
     }
+}
+else{
+    $_SESSION['failedRegistration_password'] = true;
+    header("Location: http://localhost/finalproject/register.php");
 }
 $mysqli->close();
 exit;

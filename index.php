@@ -5,7 +5,7 @@
 <main class="index">
 
     <div class="intro">
-        <h1>BlumigeSeifen</h1>
+        <h1>BlumigSeifen</h1>
         <p>Our soap bars are hand-made using all-natural, high-quality, plant-based ingredients which are ethically sourced and produced
             for your sensitive skin.</p>
     </div>

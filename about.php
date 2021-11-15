@@ -4,9 +4,9 @@
 <!-- body -->
 <main class="index">
     <div class="intro">
-        <h1>BlumigeSeifen</h1><br>
+        <h1>BlumigSeifen</h1><br>
         <h2>About us</h2>
-        <p style="text-align: left; margin: 0px 100px" >BlumigeSeifen is a homegrown online store that offers a wide range of soap to our customers.
+        <p style="text-align: left; margin: 0px 100px" >BlumigSeifen is a homegrown online store that offers a wide range of soap to our customers.
             Our soap is handmade out of natural ingredients that are pH neutral and gentle to your skin.
             <br><br>
             We are a homegrown online store that offers a one-stop service to our customers. We provide

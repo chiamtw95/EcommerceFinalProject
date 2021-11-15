@@ -1,4 +1,5 @@
 <?php
+
 //connection utils
 $mysqli = new mysqli("localhost", "admin", "admin", "finalproject");
 
@@ -16,6 +17,7 @@ function alert($msg) {
 
 //Validation tools
 $name_pattern = "/^([a-zA-Z' ]+)$/";
+$city_pattern = "/^([a-zA-Z ]+)$/";
 //Sanitizing tools
 function sanitize ($str){
     $str = addslashes($str);

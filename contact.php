@@ -1,5 +1,8 @@
 <!-- header -->
-<?php include 'templates/header.php';?>
+<?php
+include 'templates/header.php';
+session_start();
+?>
 
 <!-- body -->
 <main class="index">
@@ -16,7 +19,7 @@
                 <input type="text" name="fullname" id="fullname"><br>
 
                 <label for="email">Email: </label>
-                <input type="email" name="email" id="email"><br>
+                <input type="email" name="email" id="email" value="<?php echo $_SESSION['email']?>"><br>
 
                 <label for="msg">Your enquiry: </label>
                 <textarea rows="20" name="msg" id="msg"></textarea> <br>
